@@ -1,0 +1,72 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="StartProgram" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Windows\system32\cmd.exe</Value>
+    </Setting>
+    <Setting Name="StopProgram" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Windows\system32\WindowsPowerShell\v1.0\powershell.exe</Value>
+    </Setting>
+    <Setting Name="canPause" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="PauseProgram" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Windows\system32\notepad.exe</Value>
+    </Setting>
+    <Setting Name="ContinueProgram" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Windows\system32\calc.exe</Value>
+    </Setting>
+    <Setting Name="canRaiseEvents" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="StartArguments" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/C</Value>
+    </Setting>
+    <Setting Name="StopArguments" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="PauseArguments" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ContinueArguments" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="CheckRunningProgram" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="CheckRunningArguments" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="canSelfCheckRunning" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="hasCustomStop" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="checkisRunning" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">2000</Value>
+    </Setting>
+    <Setting Name="MainProgram" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Windows\system32\WindowsPowerShell\v1.0\powershell.exe</Value>
+    </Setting>
+    <Setting Name="MainArguments" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="WaitStart" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">100000</Value>
+    </Setting>
+    <Setting Name="WaitStop" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">100000</Value>
+    </Setting>
+    <Setting Name="WaitPause" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">100000</Value>
+    </Setting>
+    <Setting Name="WaitContinue" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">100000</Value>
+    </Setting>
+    <Setting Name="LogPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\TEST\test.log</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
