@@ -127,8 +127,10 @@ Public Class Service1 'extends System.ServiceProcess.ServiceBase
     Protected Overrides Sub OnStart(ByVal args() As String)
         SetServiceStatus(ServiceState.SERVICE_START_PENDING)
 
-        NewProcess(Processes.pStartup, My.Settings.StartProgram, My.Settings.StartArguments).Start()
-        GetProcess(Processes.pStartup).WaitForExit()
+        If My.Settings.StartProgram Then
+            NewProcess(Processes.pStartup, My.Settings.StartProgram, My.Settings.StartArguments).Start()
+            GetProcess(Processes.pStartup).WaitForExit()
+        End If
 
         NewProcess(Processes.pMain, My.Settings.MainProgram, My.Settings.MainArguments).Start()
 
