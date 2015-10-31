@@ -2,7 +2,7 @@
 Imports System.Threading
 
 Public Class KillNicelyCmdProg
-    Private Sub StopProgramByAttachingToItsConsoleAndIssuingCtrlCEvent(ByVal process As Process, Optional ByVal waitForExitTimeout As Integer = 2000)
+    Public Shared Sub StopProgramByAttachingToItsConsoleAndIssuingCtrlCEvent(ByVal process As Process, Optional ByVal waitForExitTimeout As Integer = 2000)
         If (Not AttachConsole(process.Id)) Then
             Exit Sub
         End If
@@ -33,20 +33,18 @@ Public Class KillNicelyCmdProg
 #Region "DllImports"
 
     <DllImport("kernel32.dll", SetLastError:=True)>
-    Public Shared Function AttachConsole(ByVal dwProcessId As UInt32) As Boolean
+    Private Shared Function AttachConsole(ByVal dwProcessId As UInt32) As Boolean
     End Function
 
     <DllImport("kernel32.dll", SetLastError:=True, ExactSpelling:=True)>
-    Public Shared Function FreeConsole() As Boolean
+    Private Shared Function FreeConsole() As Boolean
     End Function
 
-    <DllImport("kernel32.dll")>
-    Public Shared Function SetConsoleCtrlHandler(ByVal HandlerRoutine As ConsoleCtrlDelegate, ByVal Add As Boolean)
-    End Function
+    Private Declare Function SetConsoleCtrlHandler Lib "kernel32" (HandlerRoutine As ConsoleCtrlDelegate, Add As Boolean) As Boolean
 
-    Delegate Function ConsoleCtrlDelegate(CtrlType As CtrlTypes) As Boolean
+    Private Delegate Function ConsoleCtrlDelegate(CtrlType As CtrlTypes) As Boolean
 
-    Public Enum CtrlTypes : uint
+    Private Enum CtrlTypes : uint
         ctrl_c_event = 0
         CTRL_BREAK_EVENT
         CTRL_CLOSE_EVENT

@@ -1,20 +1,20 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
-    <Name>OpenService</Name>
+    <Name>CustomServiceCreator</Name>
     <Description>Allows you to run external Applications on Service Actions, (mostly for testing porposes)</Description>
     <ProjectType>VisualBasic</ProjectType>
     <ProjectSubType>
     </ProjectSubType>
     <SortOrder>1000</SortOrder>
     <CreateNewFolder>true</CreateNewFolder>
-    <DefaultName>OpenService</DefaultName>
+    <DefaultName>CustomServiceCreator</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
     <LocationField>Enabled</LocationField>
     <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
     <Icon>__TemplateIcon.ico</Icon>
   </TemplateData>
   <TemplateContent>
-    <Project TargetFileName="WindowsService1.vbproj" File="WindowsService1.vbproj" ReplaceParameters="true">
+    <Project TargetFileName="CustomServiceCreator.vbproj" File="CustomServiceCreator.vbproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="true" TargetFileName="app.config">app.config</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="KillNicelyCmdProg.vb">KillNicelyCmdProg.vb</ProjectItem>
       <Folder Name="My Project" TargetFolderName="My Project">

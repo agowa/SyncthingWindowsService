@@ -1,7 +1,4 @@
-﻿'Only for reverence, not for productive environments ;-)
-' TODO: Cleanup
-
-Imports System.Runtime.InteropServices
+﻿Imports System.Runtime.InteropServices
 Imports System.Threading
 
 Public Class Service1 'extends System.ServiceProcess.ServiceBase
@@ -9,19 +6,26 @@ Public Class Service1 'extends System.ServiceProcess.ServiceBase
     Private pStartInfo(5) As ProcessStartInfo
     Private stopping As Boolean = False
     Private stoppedEvent As ManualResetEvent = New ManualResetEvent(False)
-    
-    Const enableDebugging As Boolean = False
-    Private Sub Debugging()
-        If enableDebugging Then
-            ' Debugging Localy
-            'Debugger.Launch()
 
-            ' Debugging Remotely
-            'While Not Debugger.IsAttached
-            'Thread.Sleep(100)
-            'End While
+    Public Sub New()
+        InitializeComponent()
+        Debugging()
+    End Sub
+
+    Private Sub Debugging()
+        If My.Settings.WaitForDebugger Then
+            If My.Settings.DebuggerIsRemote Then
+                'Debugging Remotely
+                While Not Debugger.IsAttached
+                    Thread.Sleep(100)
+                End While
+            Else
+                'Debugging Localy
+                Debugger.Launch()
+            End If
         End If
     End Sub
+
 
     Private _serviceStatus As ServiceStatus
     Private Sub TESTSUB()
@@ -44,15 +48,17 @@ Public Class Service1 'extends System.ServiceProcess.ServiceBase
         pStop = 5
     End Enum
     Private Function NewProcess(ByVal process As Processes, ByVal FileName As String, ByVal Arguments As String) As Process
-        
+        ' TODO: Cleanup
         Me.p(process) = New Process()
         Me.pStartInfo(process) = New ProcessStartInfo()
         pStartInfo(process).WorkingDirectory = System.IO.Path.GetDirectoryName(FileName)
         pStartInfo(process).FileName = System.IO.Path.GetFullPath(FileName)
         pStartInfo(process).WindowStyle = ProcessWindowStyle.Hidden
-        ' TODO: Get CMD Windows Output
+
+        'TODO: Get CMD Windows Output
         'pStartInfo(process).OutputDataReceived += Function(origin, args) WriteTextAsync(args.Data, output)
         'pStartInfo(process).ErrorDataReceived += Function(origin, args) WriteTextAsync(args.Data, output)
+
         pStartInfo(process).Arguments = Arguments
         pStartInfo(process).RedirectStandardError = True
         pStartInfo(process).RedirectStandardOutput = True
@@ -69,7 +75,6 @@ Public Class Service1 'extends System.ServiceProcess.ServiceBase
     End Function
 
     Private Sub SetServiceStatus(ByVal serviceState As ServiceState)
-        Exit Sub
         Dim serviceStatus As ServiceStatus = New ServiceStatus()
         serviceStatus.dwCurrentState = serviceState
 
@@ -117,7 +122,7 @@ Public Class Service1 'extends System.ServiceProcess.ServiceBase
         Public dwCheckPoint As Long
         Public dwWaitHint As Long
     End Structure
-    Declare Auto Function SetServiceStatus Lib "advapi32.dll" (ByVal handle As IntPtr, ByRef serviceStatus As ServiceStatus) As Boolean
+    Private Declare Auto Function SetServiceStatus Lib "advapi32.dll" (ByVal handle As IntPtr, ByRef serviceStatus As ServiceStatus) As Boolean
 
     Protected Overrides Sub OnStart(ByVal args() As String)
         SetServiceStatus(ServiceState.SERVICE_START_PENDING)
@@ -144,16 +149,18 @@ Public Class Service1 'extends System.ServiceProcess.ServiceBase
             GetProcess(Processes.pStop).WaitForExit()
         Else
             If Not GetProcess(Processes.pMain).HasExited Then
-                GetProcess(Processes.pMain).CloseMainWindow() ' Not working, TODO: Use KillNicelyCmdProg instead
-                GetProcess(Processes.pMain).WaitForExit(20)   ' Not Working, TODO: Use KillNicelyCmdProg instead
-                If Not GetProcess(Processes.pMain).HasExited Then
-                    GetProcess(Processes.pMain).Kill()
+                If My.Settings.MainIsCmdApplication Then
+                    KillNicelyCmdProg.StopProgramByAttachingToItsConsoleAndIssuingCtrlCEvent(GetProcess(Processes.pMain))
+                Else
+                    If Not GetProcess(Processes.pMain).HasExited Then
+                        GetProcess(Processes.pMain).Kill()
+                        Thread.Sleep(100)
+                    End If
                 End If
+                GetProcess(Processes.pMain).Close()
+                GetProcess(Processes.pMain).Dispose()
             End If
-            GetProcess(Processes.pMain).Close()
-            GetProcess(Processes.pMain).Dispose()
         End If
-
         SetServiceStatus(ServiceState.SERVICE_STOPPED)
     End Sub
 
