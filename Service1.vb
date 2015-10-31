@@ -127,7 +127,7 @@ Public Class Service1 'extends System.ServiceProcess.ServiceBase
     Protected Overrides Sub OnStart(ByVal args() As String)
         SetServiceStatus(ServiceState.SERVICE_START_PENDING)
 
-        If My.Settings.StartProgram Then
+        If Not String.IsNullOrWhiteSpace(My.Settings.StartProgram) Then
             NewProcess(Processes.pStartup, My.Settings.StartProgram, My.Settings.StartArguments).Start()
             GetProcess(Processes.pStartup).WaitForExit()
         End If
@@ -146,7 +146,7 @@ Public Class Service1 'extends System.ServiceProcess.ServiceBase
 
         Me.stopping = True
         Me.stoppedEvent.WaitOne()
-        If My.Settings.hasCustomStop Then
+        If Not String.IsNullOrWhiteSpace(My.Settings.StopProgram) Then
             NewProcess(Processes.pStop, My.Settings.StopProgram, My.Settings.StopArguments).Start()
             GetProcess(Processes.pStop).WaitForExit()
         Else
