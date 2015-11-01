@@ -26,6 +26,7 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="Settings.settings">Settings.settings</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Settings.Designer.vb">Settings.Designer.vb</ProjectItem>
       </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="proc_OutputDataReceived.vb">proc_OutputDataReceived.vb</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="ProjectInstaller.vb">ProjectInstaller.vb</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="ProjectInstaller.Designer.vb">ProjectInstaller.Designer.vb</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="ProjectInstaller.resx">ProjectInstaller.resx</ProjectItem>

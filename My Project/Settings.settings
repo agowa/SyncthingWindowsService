@@ -41,14 +41,11 @@
     <Setting Name="canSelfCheckRunning" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="hasCustomStop" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="checkisRunning" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">2000</Value>
     </Setting>
     <Setting Name="MainProgram" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">PATH-TO\testConsolApp.exe</Value>
     </Setting>
     <Setting Name="MainArguments" Type="System.String" Scope="Application">
       <Value Profile="(Default)" />
@@ -66,7 +63,7 @@
       <Value Profile="(Default)">100000</Value>
     </Setting>
     <Setting Name="LogPath" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">C:\temp</Value>
     </Setting>
     <Setting Name="MainIsCmdApplication" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">True</Value>
@@ -76,6 +73,27 @@
     </Setting>
     <Setting Name="DebuggerIsRemote" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ServiceDependsOn" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ServiceName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">AAAAA-Service1</Value>
+    </Setting>
+    <Setting Name="ServiceDisplayName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">AAAAAA-DisplayName</Value>
+    </Setting>
+    <Setting Name="ServiceUserAccountName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">LocalService</Value>
+    </Setting>
+    <Setting Name="ServiceUserAccountPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ServiceDescription" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ServiceStartType" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Manual</Value>
     </Setting>
   </Settings>
 </SettingsFile>
