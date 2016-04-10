@@ -8,10 +8,10 @@ Imports System.Runtime.InteropServices
 
 ' Die Werte der Assemblyattribute überprüfen
 
-<Assembly: AssemblyTitle("$safeprojectname$")> 
+<Assembly: AssemblyTitle("OpenWindowsService")> 
 <Assembly: AssemblyDescription("")> 
 <Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("$safeprojectname$")> 
+<Assembly: AssemblyProduct("OpenWindowsService")> 
 <Assembly: AssemblyCopyright("Copyright ©  2015")> 
 <Assembly: AssemblyTrademark("")> 
 

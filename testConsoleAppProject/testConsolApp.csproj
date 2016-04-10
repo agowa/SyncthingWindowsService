@@ -7,8 +7,8 @@
     <ProjectGuid>{67D8D56A-A427-4D9E-B4E6-C63DC7E5BB97}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>$safeprojectname$</RootNamespace>
-    <AssemblyName>$safeprojectname$</AssemblyName>
+    <RootNamespace>OpenWindowsService</RootNamespace>
+    <AssemblyName>OpenWindowsService</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
