@@ -32,8 +32,8 @@
         '
         'ServiceInstaller1
         '
-        Me.ServiceInstaller1.DisplayName = "AAAAAA-DisplayName"
-        Me.ServiceInstaller1.ServiceName = "AAAAA-Service1"
+        Me.ServiceInstaller1.DisplayName = My.Settings.ServiceDisplayName
+        Me.ServiceInstaller1.ServiceName = My.Settings.ServiceName
         '
         'ProjectInstaller
         '

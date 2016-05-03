@@ -2,53 +2,17 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
   <Profiles />
   <Settings>
-    <Setting Name="StartProgram" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="StopProgram" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="canPause" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="PauseProgram" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="ContinueProgram" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="canRaiseEvents" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="StartArguments" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="StopArguments" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="PauseArguments" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="ContinueArguments" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="CheckRunningProgram" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="CheckRunningArguments" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="canSelfCheckRunning" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="checkisRunning" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">2000</Value>
     </Setting>
     <Setting Name="MainProgram" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">PATH-TO\testConsolApp.exe</Value>
+      <Value Profile="(Default)">syncthing.exe</Value>
     </Setting>
     <Setting Name="MainArguments" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">-no-browser</Value>
     </Setting>
     <Setting Name="WaitStart" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">100000</Value>
@@ -62,12 +26,6 @@
     <Setting Name="WaitContinue" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">100000</Value>
     </Setting>
-    <Setting Name="LogPath" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\temp</Value>
-    </Setting>
-    <Setting Name="MainIsCmdApplication" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="WaitForDebugger" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -75,13 +33,16 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ServiceDependsOn" Type="System.Collections.Specialized.StringCollection" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;RpcSs&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="ServiceName" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">AAAAA-Service1</Value>
+      <Value Profile="(Default)">Syncthing</Value>
     </Setting>
     <Setting Name="ServiceDisplayName" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">AAAAAA-DisplayName</Value>
+      <Value Profile="(Default)">Syncthing Service</Value>
     </Setting>
     <Setting Name="ServiceUserAccountName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">LocalService</Value>
@@ -94,6 +55,12 @@
     </Setting>
     <Setting Name="ServiceStartType" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Manual</Value>
+    </Setting>
+    <Setting Name="udpListeningPort" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">8080</Value>
+    </Setting>
+    <Setting Name="udpListeningIP" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">127.0.0.1</Value>
     </Setting>
   </Settings>
 </SettingsFile>
