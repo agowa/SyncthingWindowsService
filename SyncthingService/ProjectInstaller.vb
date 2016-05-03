@@ -55,7 +55,7 @@ Public Class ProjectInstaller
                     End If
                 Else
                     ' Falling back to NetworkService because specified credentials are invalid.
-                    ServiceProcessInstaller1.Account = ServiceProcess.ServiceAccount.LocalService
+                    ServiceProcessInstaller1.Account = ServiceProcess.ServiceAccount.NetworkService
                 End If
 
         End Select

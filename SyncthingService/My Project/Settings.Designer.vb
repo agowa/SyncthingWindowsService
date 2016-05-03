@@ -175,7 +175,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("LocalService")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("NetworkService")>  _
         Public ReadOnly Property ServiceUserAccountName() As String
             Get
                 Return CType(Me("ServiceUserAccountName"),String)
@@ -202,7 +202,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Manual")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Automatic")>  _
         Public ReadOnly Property ServiceStartType() As String
             Get
                 Return CType(Me("ServiceStartType"),String)

@@ -1,13 +1,14 @@
 ﻿Imports System.ServiceProcess
 Imports System.IO
 Imports System.IO.Compression
+Imports System.Threading
 
-<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Service1
     Inherits System.ServiceProcess.ServiceBase
 
     'UserService überschreibt den Löschvorgang, um die Komponentenliste zu bereinigen.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -54,18 +55,25 @@ Partial Class Service1
                 End If
                 ' Install Service
                 System.Configuration.Install.ManagedInstallerClass.InstallHelper(New String() {path})
+                ' Start Service
+                Dim service As ServiceController = New ServiceController(My.Settings.ServiceName)
+                service.Start()
+                Thread.Sleep(10000)
+                ' Open Browser with Web-UI
+                Process.Start("http://127.0.0.1:8384/")
             Else
                 Dim programDir As String = IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), My.Settings.ServiceDisplayName)
                 Directory.CreateDirectory(programDir)
-                File.Copy(path, IO.Path.Combine(programDir, IO.Path.GetFileName(path)))
+                Dim destinationpath As String = IO.Path.Combine(programDir, IO.Path.GetFileName(path))
+                File.Copy(path, destinationpath)
                 Try
-                    File.Copy(IO.Path.Combine(path, ".config"), IO.Path.Combine(programDir, IO.Path.GetFileName(path), ".config"))
+                    File.Copy(path + ".config", destinationpath + ".config")
                 Catch ex As FileNotFoundException ' No Config File found, so nothing to copy.
                 End Try
                 Dim proc As New ProcessStartInfo
                 proc.UseShellExecute = True
-                proc.WorkingDirectory = Environment.CurrentDirectory
-                proc.FileName = path
+                proc.WorkingDirectory = programDir
+                proc.FileName = destinationpath
                 proc.Verb = "runas"
                 Process.Start(proc)
             End If
@@ -129,6 +137,9 @@ Partial Class Service1
         Dim unzipedExePath As String() = My.Computer.FileSystem.GetFiles(extractPath, FileIO.SearchOption.SearchAllSubDirectories, "syncthing.exe").ToArray
         If (unzipedExePath.Length = 1) Then
             File.Move(unzipedExePath(0), exePath)
+            Dim fs = File.GetAccessControl(exePath)
+            fs.SetAccessRuleProtection(False, False) ' Inherit new parent folder permissions
+            File.SetAccessControl(exePath, fs)
         Else
             Throw New FileNotFoundException("Could not find ""syncthing.exe"", may the zip was not downloaded successfully or its structure changed.")
         End If

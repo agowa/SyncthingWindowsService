@@ -50,8 +50,9 @@ Public Class Service1 'extends System.ServiceProcess.ServiceBase
     Protected Overrides Sub OnStart(ByVal args() As String)
         p = New Process()
         pStartInfo = New ProcessStartInfo()
-        pStartInfo.WorkingDirectory = System.IO.Path.GetDirectoryName(My.Settings.MainProgram)
-        pStartInfo.FileName = System.IO.Path.GetFullPath(My.Settings.MainProgram)
+        Dim path As String = Reflection.Assembly.GetExecutingAssembly().Location
+        pStartInfo.WorkingDirectory = IO.Path.GetDirectoryName(path)
+        pStartInfo.FileName = IO.Path.Combine(IO.Path.GetDirectoryName(path), My.Settings.MainProgram)
         pStartInfo.WindowStyle = ProcessWindowStyle.Hidden
         pStartInfo.Arguments = My.Settings.MainArguments
         pStartInfo.RedirectStandardError = True
