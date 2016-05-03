@@ -89,11 +89,7 @@ Public Class Service1 'extends System.ServiceProcess.ServiceBase
 
     End Sub
     Public Sub proc_OutputDataReceived(ByVal sender As Object, ByVal e As DataReceivedEventArgs)
-        'If Me.InvokeRequired = True Then
-        'Me.Invoke(myDelegate, e.Data)
-        'Else
         udpSendOutputData(e.Data)
-        'End If
     End Sub
 
 
@@ -171,8 +167,7 @@ Public Class Service1 'extends System.ServiceProcess.ServiceBase
             '    isExiting = True
             'End If
 
-            ' If the process was shut down unexpectedly, we're going to call the onStop() Funktion to allow cleanups, pleas consider
-            ' this when implementing your onStop script.
+            ' If the process was shut down unexpectedly, we're going to call the onStop() Funktion to allow cleanups
             ' If we are already shutting down we only have to set the stoppedEvent (onStop is waiting for us) and exit
             If Me.stopping Then
                 Me.stoppedEvent.Set()

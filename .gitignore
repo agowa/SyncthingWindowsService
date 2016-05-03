@@ -3,6 +3,7 @@
 /SyncthingService/obj
 *.exe
 *.dll
+/.vs
 
 # Windows image file caches
 Thumbs.db

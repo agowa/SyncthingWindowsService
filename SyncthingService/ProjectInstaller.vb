@@ -1,5 +1,6 @@
-﻿Imports System.ComponentModel
-Imports System.Configuration.Install
+﻿Imports System.Configuration.Install
+Imports System.DirectoryServices.AccountManagement
+Imports System.Security.Principal
 Imports System.Threading
 
 Public Class ProjectInstaller
@@ -23,7 +24,7 @@ Public Class ProjectInstaller
     End Sub
 
     Private Sub ProjectInstaller_BeforeInstall(sender As Object, e As InstallEventArgs) Handles Me.BeforeInstall
-        Try
+        Try ' TODO: Check if this is correct.
             Dim dependsOn(My.Settings.ServiceDependsOn.Count - 1) As String
             My.Settings.ServiceDependsOn.CopyTo(dependsOn, 0)
             ServiceInstaller1.ServicesDependedOn = dependsOn
@@ -45,12 +46,18 @@ Public Class ProjectInstaller
             Case "LocalSystem".ToLower
                 ServiceProcessInstaller1.Account = ServiceProcess.ServiceAccount.LocalSystem
             Case Else
-                ServiceProcessInstaller1.Account = ServiceProcess.ServiceAccount.User
-                ' TODO: Check for Valid User
-                ServiceProcessInstaller1.Username = My.Settings.ServiceUserAccountName
-                If Not String.IsNullOrWhiteSpace(My.Settings.ServiceUserAccountPassword) Then
-                    ServiceProcessInstaller1.Password = My.Settings.ServiceUserAccountPassword
+                ' Check for Valid User and Password
+                If checkUser.validity(My.Settings.ServiceUserAccountName, My.Settings.ServiceUserAccountPassword) Then
+                    ServiceProcessInstaller1.Account = ServiceProcess.ServiceAccount.User
+                    ServiceProcessInstaller1.Username = My.Settings.ServiceUserAccountName
+                    If Not String.IsNullOrWhiteSpace(My.Settings.ServiceUserAccountPassword) Then
+                        ServiceProcessInstaller1.Password = My.Settings.ServiceUserAccountPassword
+                    End If
+                Else
+                    ' Falling back to NetworkService because specified credentials are invalid.
+                    ServiceProcessInstaller1.Account = ServiceProcess.ServiceAccount.LocalService
                 End If
+
         End Select
 
         'StartType can be Automatic, Manual, Disabled
@@ -64,5 +71,27 @@ Public Class ProjectInstaller
         End Select
 
     End Sub
+
+    Class checkUser
+        Public Shared Function validity(username As String, Optional ByVal password As String = "") As Boolean
+            ' Validate Password, if one of these returns true they are ok ;-)
+            Dim valid As Boolean = False
+            Using context As PrincipalContext = New PrincipalContext(ContextType.Domain)
+                valid += context.ValidateCredentials(username, password)
+            End Using
+            Using context As PrincipalContext = New PrincipalContext(ContextType.ApplicationDirectory)
+                valid += context.ValidateCredentials(username, password)
+            End Using
+            Using context As PrincipalContext = New PrincipalContext(ContextType.Machine)
+                valid += context.ValidateCredentials(username, password)
+            End Using
+            'Return
+            If valid Then
+                Return True
+            Else
+                Return False
+            End If
+        End Function
+    End Class
 
 End Class
