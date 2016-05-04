@@ -4,6 +4,7 @@
 *.exe
 *.dll
 /.vs
+SyncthingWindowsService.v12.suo
 
 # Windows image file caches
 Thumbs.db
